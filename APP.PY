@@ -10,7 +10,6 @@ st.caption(
     "橫式互動表格：支援自由新增、修改、刪除項目，資料如 Excel 般直覺。"
 )
 
-# 初始化符合你 13 個條件的空白/示範資料
 if "case_management_data" not in st.session_state:
   st.session_state.case_management_data = pd.DataFrame([
       {
@@ -29,7 +28,6 @@ if "case_management_data" not in st.session_state:
       }
   ])
 
-# 核心：互動式橫式表格 (data_editor)
 edited_df = st.data_editor(
     st.session_state.case_management_data,
     num_rows="dynamic",
@@ -52,14 +50,12 @@ edited_df = st.data_editor(
     },
 )
 
-# 儲存按鈕
 if st.button("💾 儲存表格變更"):
   st.session_state.case_management_data = edited_df
   st.success("✅ 案件資料已成功更新！")
 
 st.divider()
 
-# 簡單總計
 st.subheader("📊 總覽統計")
 if not edited_df.empty:
   total_cases = len(edited_df)
